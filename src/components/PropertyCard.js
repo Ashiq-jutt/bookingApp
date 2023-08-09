@@ -48,7 +48,11 @@ const PropertyCard = ({
 
         <View style={styles.propertyInfoContainer}>
           <View style={styles.headerContainer}>
-            <Text style={styles.propertyName}>{property.name}</Text>
+            <Text style={styles.propertyName}>
+              {property.name.length > 24
+                ? property.name.slice(0, 24) + "..."
+                : property.name}
+            </Text>
             <AntDesign name="hearto" size={mvs(24)} color="red" />
           </View>
           <View style={styles.ratingContainer}>
@@ -95,16 +99,18 @@ const styles = StyleSheet.create({
   container: {
     margin: mvs(15),
     flexDirection: "row",
-    backgroundColor: "white",
+    backgroundColor: "#fff",
+    borderRadius: mvs(20),
+    overflow: "hidden",
   },
-  image: { height: mvs(240), width: mvs(100) },
+  image: { height: mvs(233), width: mvs(100) },
   propertyInfoContainer: {
     padding: mvs(10),
   },
   headerContainer: {
     flexDirection: "row",
     alignItems: "center",
-    justifyContent: "space-between",
+    // justifyContent: "space-between",
   },
   propertyName: {
     width: "65%",

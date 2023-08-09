@@ -532,30 +532,6 @@ const PlacesScreen = () => {
     }
     return 0;
   };
-
-  // const applyFilter = (filter) => {
-  //   setModalVisible(!modalVisible);
-  //   switch (filter) {
-  //     case "cost:High to Low":
-  //       setSortedData([
-  //         ...sortedData.map((val) => ({
-  //           ...val,
-  //           properties: val.properties.sort(compare),
-  //         })),
-  //       ]);
-  //       break;
-  //     case "cost:Low to High":
-  //       setSortedData([
-  //         ...sortedData.map((val) => ({
-  //           ...val,
-  //           properties: val.properties.sort(comparison),
-  //         })),
-  //       ]);
-  //       break;
-  //     default:
-  //       break;
-  //   }
-  // };
   const applyFilter = (filter) => {
     setModalVisible(false);
     switch (filter) {
@@ -603,9 +579,10 @@ const PlacesScreen = () => {
       ) : (
         <ScrollView
           showsVerticalScrollIndicator={false}
-          style={[styles.scrollView]}
+          contentContainerStyle={styles.scrollView}
+          // style={[styles.scrollView]}
         >
-          {data
+          {sortedData
             .filter((item) => item.place === route.params.place)
             .map((item) =>
               item.properties.map((property, index) => (
@@ -624,7 +601,7 @@ const PlacesScreen = () => {
       )}
 
       <BottomModal
-        onBackdropPress={() => setmodalVisible(!modalVisible)}
+        onBackdropPress={() => setModalVisible(!modalVisible)}
         swipeDirection={["up", "down"]}
         swipeThreshold={200}
         footer={
@@ -643,9 +620,9 @@ const PlacesScreen = () => {
             slideFrom: "bottom",
           })
         }
-        onHardwareBackPress={() => setmodalVisible(!modalVisible)}
+        onHardwareBackPress={() => setModalVisible(!modalVisible)}
         visible={modalVisible}
-        onTouchOutside={() => setmodalVisible(!modalVisible)}
+        onTouchOutside={() => setModalVisible(!modalVisible)}
       >
         <ModalContent style={styles.modalContent}>
           <View style={{ flexDirection: "row" }}>
@@ -708,6 +685,8 @@ const styles = StyleSheet.create({
   },
   scrollView: {
     backgroundColor: "#F5F5F5",
+    paddingBottom: mvs(40),
+    flexGrow: 1,
   },
   modalFooter: {
     paddingRight: mvs(10),

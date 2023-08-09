@@ -51,19 +51,9 @@ const HomeScreen = () => {
   useLayoutEffect(() => {
     navigation.setOptions({
       headerShown: true,
-      title: "Booking.com",
-      headerTitleStyle: {
-        fontSize: mvs(20),
-        fontWeight: "bold",
-        color: "#fff",
-        marginLeft: mvs(120),
-      },
-      headerStyle: {
-        backgroundColor: "#003580",
-        height: mvs(110),
-        borderBottomColor: "transparent",
-        shadowColor: "transparent",
-      },
+      title: "Bookings",
+      headerTitleStyle: styles.headerTitleStyle,
+      headerStyle: styles.headerStyle,
       headerRight: () => (
         <Ionicons
           name="notifications-outline"
@@ -305,6 +295,18 @@ const HomeScreen = () => {
 };
 
 const styles = StyleSheet.create({
+  headerTitleStyle: {
+    fontSize: mvs(20),
+    fontWeight: "bold",
+    color: "#fff",
+    marginLeft: mvs(130),
+  },
+  headerStyle: {
+    backgroundColor: "#003580",
+    height: mvs(110),
+    borderBottomColor: "transparent",
+    shadowColor: "transparent",
+  },
   container: {
     margin: mvs(20),
     borderColor: "#FFC72C",

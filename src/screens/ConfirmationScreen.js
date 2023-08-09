@@ -2,11 +2,11 @@ import { Pressable, StyleSheet, Text, View } from "react-native";
 import React, { useLayoutEffect } from "react";
 import { useNavigation, useRoute } from "@react-navigation/native";
 import { MaterialIcons } from "@expo/vector-icons";
-// import { useDispatch } from "react-redux";
-// import { savedPlaces } from "../SavedReducer";
+import { useDispatch } from "react-redux";
 // import { setDoc, doc } from "firebase/firestore";
 // import { auth, db } from "../firebase";
 import { mvs } from "../config/metraces";
+import { savedPlaces } from "../../SavedReducer";
 
 const ConfirmationScreen = () => {
   const route = useRoute();
@@ -20,23 +20,23 @@ const ConfirmationScreen = () => {
     });
   }, []);
 
-  //   const dispatch = useDispatch();
+  const dispatch = useDispatch();
   //   const uid = auth.currentUser.uid;
 
   const confirmBooking = async () => {
-    // dispatch(savedPlaces(route.params));
+    dispatch(savedPlaces(route.params));
 
-    // await setDoc(
-    //   doc(db, "users", `${uid}`),
-    //   {
-    //     bookingDetails: { ...route.params },
-    //   },
-    //   {
-    //     merge: true,
-    //   }
-    // );
+    await setDoc(
+      doc(db, "users", `${uid}`),
+      {
+        bookingDetails: { ...route.params },
+      },
+      {
+        merge: true,
+      }
+    );
 
-    // navigation.navigate("Main");
+    navigation.navigate("Main");
     console.log("🚀 ~ file: ConfirmationScreen.js:40 ~ confirmBooking ~ Main:");
   };
 

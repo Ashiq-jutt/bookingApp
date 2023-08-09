@@ -3,8 +3,8 @@ import React, { useEffect, useState } from "react";
 import { Feather } from "@expo/vector-icons";
 import SearchResults from "../components/SearchResults";
 import { mvs } from "../config/metraces";
-// import { collection, getDocs } from "firebase/firestore";
-// import { db } from "../firebase";
+import { collection, getDocs } from "firebase/firestore";
+import { db } from "../../firebase";
 
 const SearchScreen = () => {
   const [input, setInput] = useState("");
@@ -471,21 +471,21 @@ const SearchScreen = () => {
   ];
   const [items, setItems] = useState([]);
 
-  // useEffect(() => {
-  //   if (items.length > 0) return;
+  useEffect(() => {
+    if (items.length > 0) return;
 
-  //   const fetchProducts = async () => {
-  //     const colRef = collection(db, "places");
+    const fetchProducts = async () => {
+      const colRef = collection(db, "places");
 
-  //     const docsSnap = await getDocs(colRef);
-  //     docsSnap.forEach((doc) => {
-  //       items.push(doc.data());
-  //     });
-  //   };
+      const docsSnap = await getDocs(colRef);
+      docsSnap.forEach((doc) => {
+        items.push(doc.data());
+      });
+    };
 
-  //   fetchProducts();
-  // }, [items]);
-  // console.log(items);
+    fetchProducts();
+  }, [items]);
+  console.log(items);
   return (
     <SafeAreaView>
       <View style={styles.container}>
